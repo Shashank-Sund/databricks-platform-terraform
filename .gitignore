@@ -1,0 +1,30 @@
+# Terraform state is Terraform's memory of what it built. NEVER commit it.
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Provider plugins / lock caches
+.terraform/
+.terraform.lock.hcl
+
+# Real variable values (may contain account IDs, hosts, secrets)
+*.tfvars
+!*.tfvars.example
+
+# Plan output
+*.tfplan
+plan.out
+
+# Local overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# OS / editor noise
+.DS_Store
+*.swp

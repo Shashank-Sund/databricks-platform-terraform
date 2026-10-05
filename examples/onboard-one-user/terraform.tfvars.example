@@ -1,0 +1,20 @@
+# Copy to terraform.tfvars and fill in. (terraform.tfvars is gitignored.)
+
+# ---- Option A: local dev via CLI profiles ----
+# account_profile   = "my-account-profile"
+# workspace_profile = "my-workspace-profile"
+
+# ---- Option B: OAuth service principal (CI/prod) ----
+# account_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+# account_host   = "https://accounts.cloud.databricks.com"
+# workspace_host = "https://dbc-xxxxxxxx.cloud.databricks.com"
+# (export DATABRICKS_CLIENT_ID / DATABRICKS_CLIENT_SECRET for both scopes)
+
+workspace_id       = 1234567890123456
+group_name         = "zz-tfdemo-onboard-one"
+member_emails      = ["zz-tfdemo-test-1@example.com"]
+scim_managed_users = false
+
+# An existing catalog you own; the example creates a throwaway schema in it.
+grant_catalog       = "my_catalog"
+grant_catalog_usage = true

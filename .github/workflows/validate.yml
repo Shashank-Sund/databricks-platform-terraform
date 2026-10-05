@@ -1,0 +1,36 @@
+name: validate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.14.3"
+
+      - name: terraform fmt (check)
+        run: terraform fmt -check -recursive
+
+      - name: terraform validate (root + every example)
+        run: |
+          set -e
+          # Root (provider/version/variable templates).
+          terraform init -backend=false -input=false
+          terraform validate
+
+          # Each runnable example (transitively validates the modules it uses).
+          # validate needs no cloud credentials.
+          for d in examples/*/; do
+            if ls "$d"*.tf >/dev/null 2>&1; then
+              echo "== validate $d =="
+              terraform -chdir="$d" init -backend=false -input=false
+              terraform -chdir="$d" validate
+            fi
+          done

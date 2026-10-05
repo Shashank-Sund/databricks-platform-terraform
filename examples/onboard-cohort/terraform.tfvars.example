@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and fill in. (terraform.tfvars is gitignored.)
+
+# account_profile   = "my-account-profile"
+# workspace_profile = "my-workspace-profile"
+# -- or OAuth SP: account_id + account_host + workspace_host + env creds --
+
+workspace_id = 1234567890123456
+group_name   = "zz-tfdemo-hackathon"
+member_emails = [
+  "zz-tfdemo-test-1@example.com",
+  "zz-tfdemo-test-2@example.com",
+]
+scim_managed_users = false
+
+# An existing catalog you own; a throwaway demo schema is created in it.
+grant_catalog = "my_catalog"
